@@ -55,19 +55,8 @@ def post_daily_message():
 
 @app.route("/webhook", methods=["POST"])
 def webhook():
-    data = request.get_json()
-    if "message" in data:
-        chat_id = data["message"]["chat"]["id"]
-        user_message = data["message"].get("text", "")
+    return "ok", 200
 
-        reply = ask_adalin(user_message)
-
-        requests.post(TELEGRAM_API_URL, json={
-            "chat_id": chat_id,
-            "text": reply
-        })
-
-    return "ok"
 
 @app.route("/")
 def index():
